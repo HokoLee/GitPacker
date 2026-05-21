@@ -1,0 +1,94 @@
+{
+  "name": "git-packer",
+  "displayName": "Git Packer - File Archive",
+  "version": "1.0.0",
+  "publisher": "HokoLee",
+  "description": "根据Git文件变动进行快速压缩打包的VS Code扩展",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HokoLee/GitPacker.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "activationEvents": [
+    "onCommand:packer.packChanges",
+    "onCommand:packer.packRange"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "packer.packChanges",
+        "title": "Git Packer: 打包变动文件"
+      },
+      {
+        "command": "packer.packRange",
+        "title": "Git Packer: 打包提交范围"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "packer.packChanges"
+        },
+        {
+          "command": "packer.packRange"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Packer",
+      "properties": {
+        "gitPacker.filenameFormat": {
+          "type": "string",
+          "default": "{project} {time} {signature}.zip",
+          "description": "打包文件名格式，支持变量: {project}(项目名), {time}(时间格式可自定义), {date}(日期固定格式YYYYMMDD), {signature}(签名), {start}(起点，范围打包专用), {end}(终点，范围打包专用)"
+        },
+        "gitPacker.timeFormat": {
+          "type": "string",
+          "default": "YYYYMMDD-HH",
+          "description": "时间格式，使用 dayjs 格式字符串"
+        },
+        "gitPacker.signature": {
+          "type": "string",
+          "default": "GitPacker",
+          "description": "签名字符串"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "build": "vsce package",
+    "build:min": "vsce package --no-dependencies",
+    "publish": "vsce publish",
+    "watch": "nodemon --watch . --ext js --exec \"npm run build\"",
+    "prebuild": "npm run lint"
+  },
+  "keywords": [
+    "git",
+    "pack",
+    "archive",
+    "vscode"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "simple-git": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "eslint": "^8.57.1",
+    "globals": "^17.6.0",
+    "typescript": "^4.9.3"
+  }
+}
