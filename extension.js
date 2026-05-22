@@ -91,7 +91,7 @@ async function selectFilesToPack(files) {
 }
 
 function activate(context) {
-  let packChangesDisposable = vscode.commands.registerCommand('packtools.packChanges', async () => {
+  let packChangesDisposable = vscode.commands.registerCommand('packer.packChanges', async () => {
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     if (!workspaceFolder) {
       vscode.window.showErrorMessage('请先打开一个工作区');
@@ -154,7 +154,7 @@ function activate(context) {
     }
   });
 
-  let packRangeDisposable = vscode.commands.registerCommand('packtools.packRange', async () => {
+  let packRangeDisposable = vscode.commands.registerCommand('packer.packRange', async () => {
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     if (!workspaceFolder) {
       vscode.window.showErrorMessage('请先打开一个工作区');

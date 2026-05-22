@@ -1,7 +1,7 @@
 {
   "name": "git-packer",
   "displayName": "Git Packer - File Archive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "HokoLee",
   "description": "根据Git文件变动进行快速压缩打包的VS Code扩展",
   "repository": {
